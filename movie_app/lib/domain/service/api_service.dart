@@ -15,9 +15,7 @@ class ApiService {
 
     if (response.statusCode == 200) {
       final bodyResponse = jsonDecode(response.body);
-      print("json body:${bodyResponse}");
       MovieResponse movieResponse = MovieResponse.fromJson(bodyResponse);
-      print("movie response:${movieResponse.toJson()}");
       return movieResponse;
     } else {
       throw Exception("Error to get movies");

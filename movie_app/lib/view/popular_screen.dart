@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/view/movie_item.dart';
 import 'package:movie_app/viewmodel/movie_viewmodel.dart';
-import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
 import '../domain/model/movie.dart';
@@ -20,7 +19,6 @@ class _PopularScreen extends State<PopularScreen> {
   late StreamSubscription<List<Movie>> movieSubscription;
 
   static const double _endReachedThreshold = 200;
-  static const int _itemsPerPage = 20;
 
   final ScrollController _controller = ScrollController();
 
@@ -33,9 +31,6 @@ class _PopularScreen extends State<PopularScreen> {
     _controller.addListener(_onScroll);
     _getMovies();
     super.initState();
-    // movieSubscription = movieViewModel.moveStream.listen((movies) {
-    //   movieViewModel.onMoveListChanged(movies);
-    // });
   }
 
   @override
@@ -54,7 +49,7 @@ class _PopularScreen extends State<PopularScreen> {
 
       _nextPage++;
 
-      if (movieViewModel.movieList.length < 10) {
+      if (movieViewModel.movieList.length < 20) {
         _canLoadMore = false;
       }
 
@@ -88,26 +83,25 @@ class _PopularScreen extends State<PopularScreen> {
         backgroundColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-            onPressed: () {
-              Toast.show(
-                'Action back',
-                duration: Toast.lengthLong,
-                gravity: Toast.bottom,
-                backgroundRadius: 4,
-                textStyle: const TextStyle(
-                    height: 1.2,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                    fontSize: 12),
-              );
-            },
-          ),
+        titleSpacing: 0,
+        leading: IconButton(
+          padding: EdgeInsets.only(left: 24),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () {
+            Toast.show(
+              'Action back',
+              duration: Toast.lengthLong,
+              gravity: Toast.bottom,
+              backgroundRadius: 4,
+              textStyle: const TextStyle(
+                  height: 1.2,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                  fontSize: 12),
+            );
+          },
         ),
-        leadingWidth: 16,
+        leadingWidth: 32,
         title: Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
@@ -120,18 +114,17 @@ class _PopularScreen extends State<PopularScreen> {
       body: Column(
         children: [
           Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(top:16,left: 16),
-              child: Text(
-                "Popular list",
-                style: TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              ),
-            )
-          ),
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(top: 16, left: 16, bottom: 16),
+                child: Text(
+                  "Popular list",
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+              )),
           Expanded(
             child: CustomScrollView(
               controller: _controller,
@@ -140,7 +133,8 @@ class _PopularScreen extends State<PopularScreen> {
                   onRefresh: _refresh,
                 ),
                 SliverPadding(
-                  padding: EdgeInsets.all(16),
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 16),
                   sliver: SliverGrid(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 2 / 3,
@@ -163,9 +157,9 @@ class _PopularScreen extends State<PopularScreen> {
                       ? Container(
                           padding: EdgeInsets.only(bottom: 16),
                           alignment: Alignment.center,
-                          child: CircularProgressIndicator(),
+                          child: const CircularProgressIndicator(),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ),
               ],
             ),
