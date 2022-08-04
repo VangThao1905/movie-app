@@ -5,7 +5,7 @@ An application to show popular movie.
 
 - This demo app Using MVVM pattern.
 
-Plugin used:
+Plugins used:
 - State management: provider
 - Network: http
 - Show toast: toast
