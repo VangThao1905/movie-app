@@ -12,15 +12,19 @@ class DimensConst {
   static const paddingAll16 = EdgeInsets.all(16.0);
 
   static const paddingL16 = EdgeInsets.only(left: 16.0);
-  static const paddingL24 =  EdgeInsets.only(left: 24);
+  static const paddingL24 = EdgeInsets.only(left: 24);
 
-  static const paddingB6 =  EdgeInsets.only(bottom: 6);
-  static const paddingB16 =  EdgeInsets.only(bottom: 16);
+  static const paddingB6 = EdgeInsets.only(bottom: 6);
+  static const paddingB16 = EdgeInsets.only(bottom: 16);
 
+  static const paddingT16L16B16 =
+      EdgeInsets.only(top: 16, left: 16, bottom: 16);
 
-  static const paddingT16L16B16 =  EdgeInsets.only(top: 16, left: 16, bottom: 16);
+  static const paddingT0L16R16B16 =
+      EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 16);
 
-  static const paddingT12L8R8B8 = EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 8);
+  static const paddingT12L8R8B8 =
+      EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 8);
 
   //with
   static const width32 = 32.0;

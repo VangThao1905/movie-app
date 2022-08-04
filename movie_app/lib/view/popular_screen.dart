@@ -134,7 +134,7 @@ class _PopularScreen extends State<PopularScreen> {
                   onRefresh: _refresh,
                 ),
                 SliverPadding(
-                  padding: DimensConst.paddingT16L16B16,
+                  padding: DimensConst.paddingT0L16R16B16,
                   sliver: SliverGrid(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 2 / 3,
